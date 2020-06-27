@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion ConfigVersions.sdkVersion
+    buildToolsVersion ConfigVersions.buildToolsVersion
+
+    defaultConfig {
+        applicationId ConfigVersions.applicationId
+        minSdkVersion ConfigVersions.minSdkVersion
+        targetSdkVersion ConfigVersions.targetSdkVersion
+        versionCode ConfigVersions.versionCode
+        versionName ConfigVersions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation Deps.kotlinVersion
+    implementation Deps.coreKtx
+    implementation Deps.appcompat
+    implementation Deps.constraintLayout
+    testImplementation Deps.junit
+    androidTestImplementation Deps.textExt
+    androidTestImplementation Deps.textEspressoCore
+
+    implementation Deps.material
+    implementation Deps.recyclerView
+    implementation Deps.lifecycleExt
+    implementation Deps.lifecycleViewModel
+    implementation Deps.retrofit2
+    implementation Deps.retrofit2Converter
+    implementation Deps.brvah
+
+}
