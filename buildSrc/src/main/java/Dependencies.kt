@@ -30,6 +30,7 @@ object DepVersions {
     const val retrofit2 = "2.9.0"
     const val retrofit2Converter = "2.9.0"
     const val brvah = "3.0.1"
+    const val qmui = "2.0.0-alpha10"
 }
 
 /**
@@ -51,4 +52,5 @@ object Deps {
     const val retrofit2 = "com.squareup.retrofit2:retrofit:${DepVersions.retrofit2}"
     const val retrofit2Converter = "com.squareup.retrofit2:converter-gson:${DepVersions.retrofit2Converter}"
     const val brvah = "com.github.CymChad:BaseRecyclerViewAdapterHelper:${DepVersions.brvah}"
+    const val qmui = "com.qmuiteam:qmui:${DepVersions.qmui}"
 }

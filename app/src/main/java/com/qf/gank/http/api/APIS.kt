@@ -13,5 +13,5 @@ import retrofit2.http.GET
 interface APIS {
 
     @GET("banners")
-    fun getBanners() : Call<ApiResult<List<BannerBean>>>
+    suspend fun getBanners() : ApiResult<List<BannerBean>>
 }

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/mHeaderIv"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_drawer_header" />
+
+    <ImageView
+        android:id="@+id/mCloseDrawerIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_close_drawer" />
+
+    <ImageView
+        android:id="@+id/mNightModeIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/mCloseDrawerIv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_day_mode" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <FrameLayout
+        android:id="@+id/mHeaderUserFl"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape_drawer_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/mUserIconFl"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toEndOf="@+id/mHeaderUserFl"
+        app:layout_constraintStart_toStartOf="@+id/mHeaderUserFl"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/guideline">
+
+        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+            android:id="@+id/mUserIconIv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_user_default"
+            android:scaleType="centerCrop"
+            app:qmui_is_circle="true"
+            app:qmui_border_width="3dp"
+            app:qmui_border_color="@color/white"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/mLoginTv"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_bg_drawer_login"
+        android:gravity="center"
+        android:text="@string/drawer_login_now"
+        android:textColor="@color/drawer_login_text"
+        app:layout_constraintEnd_toEndOf="@id/mHeaderUserFl"
+        app:layout_constraintStart_toStartOf="@id/mHeaderUserFl"
+        app:layout_constraintTop_toBottomOf="@+id/mUserIconFl" />
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_drawer_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mHeaderUserFl">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="20dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:text="@string/drawer_home"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="20dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:text="@string/drawer_girl"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="20dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:text="@string/drawer_gank"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="20dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:text="@string/drawer_topic"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="20dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:text="@string/drawer_flutter"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="20dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:text="@string/drawer_api"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_14" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="20dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:text="@string/drawer_leave_message"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="20dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:text="@string/drawer_new_version_progress"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_14" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

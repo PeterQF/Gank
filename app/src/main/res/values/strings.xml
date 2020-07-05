@@ -4,4 +4,13 @@
     <string name="common_net_error">网络连接失败</string>
     <string name="common_net_time_out">网络请求超时</string>
     <string name="common_json_parse_error">数据解析错误</string>
+    <string name="drawer_home">首页</string>
+    <string name="drawer_girl">妹子</string>
+    <string name="drawer_gank">干货</string>
+    <string name="drawer_topic">专题</string>
+    <string name="drawer_flutter">Flutter</string>
+    <string name="drawer_api">API</string>
+    <string name="drawer_leave_message">留言</string>
+    <string name="drawer_new_version_progress">新版进度</string>
+    <string name="drawer_login_now">立即登录</string>
 </resources>

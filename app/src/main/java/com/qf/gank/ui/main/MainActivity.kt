@@ -1,41 +1,27 @@
 package com.qf.gank.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.qf.gank.R
-import com.qf.gank.bean.banner.BannerBean
-import com.qf.gank.ext.launch
-import com.qf.gank.http.client.RetrofitClient
-import com.qf.gank.http.result.ApiResult
+import com.qf.gank.ui.base.BaseVmActivity
 import com.qf.gank.utils.LogUtils
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseVmActivity<MainViewModel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        RetrofitClient
-            .getService
-            .getBanners()
-            .enqueue(object : Callback<ApiResult<List<BannerBean>>> {
-                override fun onFailure(call: Call<ApiResult<List<BannerBean>>>, t: Throwable) {
-                    LogUtils.info("get banner failed ---> ${t.printStackTrace()}")
-                }
+    override fun viewModelClass() = MainViewModel::class.java
 
-                override fun onResponse(
-                    call: Call<ApiResult<List<BannerBean>>>,
-                    response: Response<ApiResult<List<BannerBean>>>
-                ) {
-                    if (response.isSuccessful) {
-                        if (response.body()?.status == 100) {
-                            LogUtils.info("get banner success ---> ${response.body()?.apiData()}")
-                        }
-                    }
-                }
+    override fun initView() {}
 
-            })
+    override fun initData() {
+        mViewModel.getBanner()
     }
+
+    override fun observe() {
+        super.observe()
+        mViewModel.mBannerLiveData.observe(this, Observer {
+            LogUtils.info("get banner success ---> $it")
+        })
+
+    }
+
+    override fun getLayoutId() = R.layout.fragment_drawer
 }
