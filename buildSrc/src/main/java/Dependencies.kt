@@ -27,10 +27,12 @@ object DepVersions {
     const val recyclerView = "1.1.0"
     const val lifecycleExt = "2.2.0"
     const val lifecycleViewModel = "2.2.0"
+    const val navigation = "2.3.0"
     const val retrofit2 = "2.9.0"
     const val retrofit2Converter = "2.9.0"
     const val brvah = "3.0.1"
     const val qmui = "2.0.0-alpha10"
+    const val eventLiveData = "1.1.2"
 }
 
 /**
@@ -49,8 +51,11 @@ object Deps {
     const val recyclerView = "androidx.recyclerview:recyclerview:${DepVersions.recyclerView}"
     const val lifecycleExt = "androidx.lifecycle:lifecycle-extensions:${DepVersions.lifecycleExt}"
     const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${DepVersions.lifecycleViewModel}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${DepVersions.navigation}"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:${DepVersions.navigation}"
     const val retrofit2 = "com.squareup.retrofit2:retrofit:${DepVersions.retrofit2}"
     const val retrofit2Converter = "com.squareup.retrofit2:converter-gson:${DepVersions.retrofit2Converter}"
     const val brvah = "com.github.CymChad:BaseRecyclerViewAdapterHelper:${DepVersions.brvah}"
     const val qmui = "com.qmuiteam:qmui:${DepVersions.qmui}"
+    const val eventLiveData = "com.kunminx.event:eventlivedata:${DepVersions.eventLiveData}"
 }

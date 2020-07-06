@@ -1,9 +1,12 @@
 package com.qf.gank.ui.main
 
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import com.kunminx.event.EventObserver
 import com.qf.gank.R
 import com.qf.gank.ui.base.BaseVmActivity
 import com.qf.gank.utils.LogUtils
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseVmActivity<MainViewModel>() {
 
@@ -21,7 +24,15 @@ class MainActivity : BaseVmActivity<MainViewModel>() {
             LogUtils.info("get banner success ---> $it")
         })
 
+        getShareViewModel()?.openOrCloseDrawer?.observe(this, EventObserver {
+            if (it) {
+                mDrawerLayout.open()
+            } else {
+                mDrawerLayout.close()
+            }
+        })
+
     }
 
-    override fun getLayoutId() = R.layout.fragment_drawer
+    override fun getLayoutId() = R.layout.activity_main
 }

@@ -43,9 +43,12 @@ dependencies {
     implementation Deps.recyclerView
     implementation Deps.lifecycleExt
     implementation Deps.lifecycleViewModel
+    implementation Deps.navigationFragment
+    implementation Deps.navigationUi
     implementation Deps.retrofit2
     implementation Deps.retrofit2Converter
     implementation Deps.brvah
     implementation Deps.qmui
+    implementation Deps.eventLiveData
 
 }

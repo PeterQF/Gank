@@ -3,6 +3,7 @@ package com.qf.gank.ui.base
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import com.qf.gank.application.App
 
 /**
  * 作者：PeterWu
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 abstract class BaseVmFragment<VM: BaseViewModel> : BaseFragment() {
 
     protected lateinit var mViewModel: VM
+    private var mShareViewModel: ShareViewModel? = null
     private var lazyLoaded = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,7 +30,12 @@ abstract class BaseVmFragment<VM: BaseViewModel> : BaseFragment() {
     }
 
     private fun initViewModel() {
+        mShareViewModel = App.instance.getAppViewModelProvider(requireActivity())?.get(ShareViewModel::class.java)
         mViewModel = ViewModelProvider(this).get(viewModelClass())
+    }
+
+    fun getShareViewModel(): ShareViewModel? {
+        return mShareViewModel
     }
 
     override fun onResume() {
