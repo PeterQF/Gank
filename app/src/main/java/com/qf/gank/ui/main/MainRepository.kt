@@ -9,5 +9,4 @@ import com.qf.gank.http.client.RetrofitClient
  */
 class MainRepository {
 
-    suspend fun getBanner() = RetrofitClient.getService.getBanners().apiData()
 }

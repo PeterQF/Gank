@@ -13,16 +13,4 @@ class MainViewModel : BaseViewModel() {
 
     private val mainRepository by lazy { MainRepository() }
 
-    val mBannerLiveData: MutableLiveData<List<BannerBean>> = MutableLiveData()
-
-    fun getBanner() {
-        launch(
-            block = {
-                val bannerDefferd = async { mainRepository.getBanner() }
-                val bannerList = bannerDefferd.await()
-                mBannerLiveData.postValue(bannerList)
-            }
-        )
-    }
-
 }

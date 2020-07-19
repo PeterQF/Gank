@@ -33,6 +33,11 @@ object DepVersions {
     const val brvah = "3.0.1"
     const val qmui = "2.0.0-alpha10"
     const val eventLiveData = "1.1.2"
+    const val immersionBar = "3.0.0"
+    const val bannerViewPager = "3.1.3"
+    const val glide = "4.11.0"
+    const val dslTabLayout = "1.5.5"
+    const val smartRefresh = "2.0.1"
 }
 
 /**
@@ -58,4 +63,10 @@ object Deps {
     const val brvah = "com.github.CymChad:BaseRecyclerViewAdapterHelper:${DepVersions.brvah}"
     const val qmui = "com.qmuiteam:qmui:${DepVersions.qmui}"
     const val eventLiveData = "com.kunminx.event:eventlivedata:${DepVersions.eventLiveData}"
+    const val immersionBar = "com.gyf.immersionbar:immersionbar:${DepVersions.immersionBar}"
+    const val bannerViewPager = "com.github.zhpanvip:BannerViewPager:${DepVersions.bannerViewPager}"
+    const val glide = "com.github.bumptech.glide:glide:${DepVersions.glide}"
+    const val dslTabLayout = "com.github.angcyo.DslTablayout:TabLayout:${DepVersions.dslTabLayout}"
+    const val smartRefresh = "com.scwang.smart:refresh-layout-kernel:${DepVersions.smartRefresh}"
+    const val smartRefreshMaterial = "com.scwang.smart:refresh-header-material:${DepVersions.smartRefresh}"
 }

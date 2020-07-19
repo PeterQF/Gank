@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mSwipeRefreshLayout"
+    app:srlPrimaryColor="@color/colorPrimary"
+    app:srlAccentColor="@android:color/white"
+    app:srlEnableHeaderTranslationContent="false"
+    app:srlEnablePreviewInEditMode="false"
+    app:srlEnableNestedScrolling="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.scwang.smart.refresh.header.MaterialHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/mAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:elevation="0dp">
+
+            <com.zhpan.bannerview.BannerViewPager
+                android:id="@+id/mBannerViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
+
+
+            <com.angcyo.tablayout.DslTabLayout
+                android:id="@+id/mDslTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                app:tab_deselect_color="#3C3B3B"
+                app:tab_select_color="@color/white"
+                app:tab_draw_indicator="true"
+                app:tab_indicator_enable_flow="true">
+
+<!--                <TextView-->
+<!--                    android:layout_width="70dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:background="@drawable/selector_tab"-->
+<!--                    android:text="最热"/>-->
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/selector_tab"
+                    android:text="妹纸"/>
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/selector_tab"
+                    android:text="Android"/>
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/selector_tab"
+                    android:text="Flutter"/>
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/selector_tab"
+                    android:text="iOS"/>
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/selector_tab"
+                    android:text="前端"/>
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/selector_tab"
+                    android:text="后端"/>
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/selector_tab"
+                    android:text="App"/>
+
+            </com.angcyo.tablayout.DslTabLayout>
+
+<!--            <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/mTabLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/dp_40"-->
+<!--                app:tabIndicatorFullWidth="false"-->
+<!--                app:tabMode="scrollable">-->
+
+<!--            </com.google.android.material.tabs.TabLayout>-->
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/mViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</com.scwang.smart.refresh.layout.SmartRefreshLayout>

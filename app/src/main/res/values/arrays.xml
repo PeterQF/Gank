@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="HomeTabTitle">
+<!--        <item>最热</item>-->
+        <item>妹纸</item>
+        <item>Android</item>
+        <item>Flutter</item>
+        <item>iOS</item>
+        <item>前端</item>
+        <item>后端</item>
+        <item>App</item>
+    </string-array>
+</resources>

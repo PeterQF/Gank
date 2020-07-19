@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#2C63FF</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="white">#FFFFFF</color>
     <color name="drawer_login_text">#3A63D9</color>
     <color name="drawer_background">#F9F9F9</color>
+    <color name="banner_indicator">#BFFFFFFF</color>
+    <color name="color_main_text">#212830</color>
+    <color name="color_sub_text">#393D46</color>
+    <color name="color_gray_text">#9CA0AB</color>
+    <color name="color_458EF5">#458EF5</color>
 </resources>

@@ -50,5 +50,10 @@ dependencies {
     implementation Deps.brvah
     implementation Deps.qmui
     implementation Deps.eventLiveData
-
+    implementation Deps.immersionBar
+    implementation Deps.bannerViewPager
+    implementation Deps.glide
+    implementation Deps.dslTabLayout
+    implementation Deps.smartRefresh
+    implementation Deps.smartRefreshMaterial
 }

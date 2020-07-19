@@ -27,5 +27,4 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_drawer"/>
 
-
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,5 +1,6 @@
 package com.qf.gank.ui.main
 
+import com.gyf.immersionbar.ImmersionBar
 import com.qf.gank.R
 import com.qf.gank.ui.base.BaseVmFragment
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -16,6 +17,11 @@ class MainFragment : BaseVmFragment<MainFgViewModel>() {
         mMenuIv.setOnClickListener {
             getShareViewModel()?.openOrCloseDrawer?.postEvent(true)
         }
+
+    }
+
+    override fun initStatusBar() {
+        ImmersionBar.with(this).titleBar(mToolbar).statusBarDarkFont(true).init()
     }
 
     override fun getLayoutId() = R.layout.fragment_main
