@@ -11,4 +11,5 @@
     <color name="color_sub_text">#393D46</color>
     <color name="color_gray_text">#9CA0AB</color>
     <color name="color_458EF5">#458EF5</color>
+    <color name="color_rv_divider">#F5F5F7</color>
 </resources>

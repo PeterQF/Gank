@@ -10,4 +10,6 @@ import com.kunminx.event.EventLiveData
 class ShareViewModel : BaseViewModel() {
 
     val openOrCloseDrawer: EventLiveData<Boolean> = EventLiveData()
+
+    val isGetCategory: EventLiveData<Boolean> = EventLiveData()
 }

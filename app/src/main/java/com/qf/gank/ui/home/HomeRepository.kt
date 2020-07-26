@@ -10,4 +10,6 @@ import com.qf.gank.http.client.RetrofitClient
 class HomeRepository {
 
     suspend fun getBanner() = RetrofitClient.getService.getBanners().apiData()
+
+    suspend fun getCategory(type: String) = RetrofitClient.getService.getCategory(type).apiData()
 }

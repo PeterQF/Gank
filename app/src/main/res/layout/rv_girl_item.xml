@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/dp_10"
+    android:padding="15dp"
     android:background="@drawable/shape_article_item_bg"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/mTagTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="妹纸"
@@ -25,65 +25,66 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/mTitleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="妹纸图第90期"
+        tools:text="妹纸图第90期"
         android:textColor="@color/color_main_text"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintBottom_toBottomOf="@id/textView"/>
+        app:layout_constraintStart_toEndOf="@+id/mTagTv"
+        app:layout_constraintTop_toTopOf="@+id/mTagTv"
+        app:layout_constraintBottom_toBottomOf="@id/mTagTv"/>
 
     <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/mIconIv"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="10dp"
         app:qmui_border_width="0dp"
         app:qmui_is_circle="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/mTagTv"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/mAuthorTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:text="Zero"
+        tools:text="Zero"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/color_sub_text"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/mIconIv"
+        app:layout_constraintStart_toEndOf="@+id/mIconIv"
+        app:layout_constraintTop_toTopOf="@+id/mIconIv" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/mPublishTimeTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2个月前"
+        tools:text="2个月前"
         android:textColor="@color/color_gray_text"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="@+id/mAuthorTv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView8" />
+        app:layout_constraintTop_toTopOf="@+id/mAuthorTv" />
 
     <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/mCoverIv"
         android:layout_width="0dp"
         android:layout_height="180dp"
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         app:qmui_corner_radius="@dimen/dp_4"
+        app:qmui_border_width="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/mIconIv"
         app:srcCompat="@drawable/image_zero" />
 </androidx.constraintlayout.widget.ConstraintLayout>

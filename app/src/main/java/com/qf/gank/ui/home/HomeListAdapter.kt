@@ -23,10 +23,10 @@ class HomeListAdapter(data: MutableList<String>) : BaseQuickAdapter<String, Base
         val tabLayout = helper.getView<TabLayout>(R.id.mTabLayout)
         val tabTitles = context.resources.getStringArray(R.array.HomeTabTitle)
         val fragments = ArrayList<Fragment>()
-        for (i in tabTitles.indices) {
-            val fragment = HomePageFragment.newInstance()
-            fragments.add(fragment)
-        }
+//        for (i in tabTitles.indices) {
+//            val fragment = HomePageFragment.newInstance()
+//            fragments.add(fragment)
+//        }
 
         viewPager.adapter = HomePageAdapter(context as FragmentActivity, fragments)
         TabLayoutMediator(tabLayout, viewPager, false,

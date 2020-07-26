@@ -1,13 +1,17 @@
 package com.qf.gank.ui.home
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.angcyo.tablayout.DslTabIndicator
 import com.google.android.material.tabs.TabLayoutMediator
 import com.qf.gank.R
 import com.qf.gank.bean.banner.BannerBean
+import com.qf.gank.bean.category.CategoryBean
 import com.qf.gank.ui.base.BaseVmFragment
 import com.qf.gank.ui.home.banner.BannerAdapter
 import com.qf.gank.ui.home.banner.BannerViewHolder
@@ -31,15 +35,17 @@ class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
 
     override fun initView() {
         setupBannerViewPager()
-        initTab()
     }
 
-    private fun initTab() {
-        val tabTitles = resources.getStringArray(R.array.HomeTabTitle)
+    private fun initTab(beans: List<CategoryBean>) {
+//        val tabTitles = resources.getStringArray(R.array.HomeTabTitle)
         val fragments = ArrayList<Fragment>()
-        for (i in tabTitles.indices) {
-            val fragment = HomePageFragment.newInstance()
+        for (i in beans.indices) {
+            val fragment = HomePageFragment.newInstance(beans[i])
             fragments.add(fragment)
+            val view = LayoutInflater.from(requireContext()).inflate(R.layout.tab_category, null) as TextView
+            view.text = beans[i].title
+            mDslTabLayout.addView(view)
         }
         mViewPager.adapter = HomePageAdapter(requireActivity(), fragments)
         mDslTabLayout.setupViewPager(ViewPager2Delegate(mViewPager, mDslTabLayout))
@@ -56,13 +62,9 @@ class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
         mBannerViewPager = requireView().findViewById(R.id.mBannerViewPager)
         mBannerViewPager.apply {
             adapter = BannerAdapter()
-            setAutoPlay(true)
-            setScrollDuration(800)
-            setIndicatorStyle(IndicatorStyle.DASH)
             setIndicatorSliderGap(resources.getDimensionPixelOffset(R.dimen.dp_4))
             setIndicatorMargin(0, 0, 15, 15)
             setPageMargin(40)
-            setIndicatorSlideMode(IndicatorSlideMode.SCALE)
             setIndicatorSliderRadius(10, 20)
             setIndicatorHeight(6)
             setIndicatorSliderColor(
@@ -77,6 +79,7 @@ class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
 
     override fun initData() {
         mViewModel.getBanner()
+        mViewModel.getCategory()
     }
 
     override fun observe() {
@@ -84,6 +87,11 @@ class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
         mViewModel.run {
             mBannerLiveData.observe(viewLifecycleOwner, Observer {
                 mBannerViewPager.refreshData(it)
+            })
+            mCategoryLiveData.observe(viewLifecycleOwner, Observer {
+                initTab(it)
+                getShareViewModel()?.isGetCategory?.postEvent(true)
+                LogUtils.info("get category ---> $it")
             })
         }
     }

@@ -1,5 +1,7 @@
 package com.qf.gank.bean.article
 
+import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.qf.gank.ui.home.HomePageListAdapter
 import java.io.Serializable
 
 data class ArticleBean(
@@ -15,5 +17,6 @@ data class ArticleBean(
     val title: String? = null,
     val type: String? = null,
     val url: String? = null,
-    val views: Int = 0
-) : Serializable
+    val views: Int = 0,
+    override var itemType: Int = HomePageListAdapter.TYPE_ARTICLE
+): MultiItemEntity, Serializable
