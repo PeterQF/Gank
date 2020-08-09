@@ -1,6 +1,7 @@
 package com.qf.gank.ui.home
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.qf.gank.bean.article.ArticleBean
 import com.qf.gank.ui.base.BaseViewModel
 
@@ -11,21 +12,11 @@ import com.qf.gank.ui.base.BaseViewModel
  */
 class HomePageViewModel : BaseViewModel() {
 
-    private val homePageRepository by lazy { HomePageRepository() }
+    private val homePageRepository by lazy { HomePageRepository(viewModelScope, errorLiveData) }
 
-    val mArticleLiveData by lazy { MutableLiveData<List<ArticleBean>>() }
+    val mArticleLiveData by lazy { MutableLiveData<MutableList<ArticleBean>>() }
 
-    fun getArticle(type: String) {
-        launch(
-            block = {
-                val articleResult = homePageRepository.getArticleResult(type)
-                val articles = articleResult.data
-                if (type == "Girl") {
-                    articles?.map { it.itemType = HomePageListAdapter.TYPE_GIRL }
-                }
-                mArticleLiveData.postValue(articles)
-            }
-        )
+    fun getArticle(isRefresh: Boolean, type: String) {
+        homePageRepository.getArticle(isRefresh, type, mArticleLiveData)
     }
-
 }

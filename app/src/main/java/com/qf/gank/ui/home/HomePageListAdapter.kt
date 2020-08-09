@@ -28,7 +28,7 @@ class HomePageListAdapter(data: MutableList<ArticleBean>) : BaseMultiItemQuickAd
     override fun convert(helper: BaseViewHolder, item: ArticleBean) {
         when(helper.itemViewType) {
             TYPE_GIRL -> {
-                helper.setText(R.id.mTitleTv, item.title)
+                helper.setText(R.id.mTitleTv, item.desc)
                     .setText(R.id.mAuthorTv, item.author)
                     .setText(R.id.mPublishTimeTv, item.publishedAt)
                 val iconView = helper.getView<QMUIRadiusImageView>(R.id.mIconIv)

@@ -2,7 +2,7 @@
 <inset xmlns:android="http://schemas.android.com/apk/res/android"
     android:insetRight="15dp"
     android:insetLeft="15dp"
-    android:insetTop="@dimen/dp_10"
+    android:insetTop="15dp"
     android:insetBottom="@dimen/dp_10"
     android:drawable="@drawable/shape_rv_divider">
 

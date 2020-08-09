@@ -30,54 +30,62 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
 
     private lateinit var mBannerViewPager: BannerViewPager<BannerBean, BannerViewHolder>
+    private val mFragmentList by lazy { arrayListOf<Fragment>() }
 
     override fun viewModelClass() = HomeFgViewModel::class.java
 
     override fun initView() {
         setupBannerViewPager()
+        initRefresh()
+    }
+
+    private fun initRefresh() {
+        mSwipeRefreshLayout.apply {
+            setEnableOverScrollBounce(false)
+            setOnRefreshListener {
+                refreshHomeData()
+            }
+        }
     }
 
     private fun initTab(beans: List<CategoryBean>) {
-//        val tabTitles = resources.getStringArray(R.array.HomeTabTitle)
-        val fragments = ArrayList<Fragment>()
+        mFragmentList.clear()
         for (i in beans.indices) {
             val fragment = HomePageFragment.newInstance(beans[i])
-            fragments.add(fragment)
+            mFragmentList.add(fragment)
             val view = LayoutInflater.from(requireContext()).inflate(R.layout.tab_category, null) as TextView
             view.text = beans[i].title
             mDslTabLayout.addView(view)
         }
-        mViewPager.adapter = HomePageAdapter(requireActivity(), fragments)
+        mViewPager.adapter = HomePageAdapter(requireActivity(), mFragmentList)
         mDslTabLayout.setupViewPager(ViewPager2Delegate(mViewPager, mDslTabLayout))
-//        TabLayoutMediator(mTabLayout, mViewPager, false,
-//            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-//                val tabView = LayoutInflater.from(requireContext()).inflate(R.layout.tab_item_custom, null)
-//                val tabTv = tabView.findViewById<TextView>(R.id.mTabTv)
-//                tabTv.text = tabTitles[position]
-//                tab.customView = tabView
-//            }).attach()
     }
 
     private fun setupBannerViewPager() {
-        mBannerViewPager = requireView().findViewById(R.id.mBannerViewPager)
-        mBannerViewPager.apply {
-            adapter = BannerAdapter()
-            setIndicatorSliderGap(resources.getDimensionPixelOffset(R.dimen.dp_4))
-            setIndicatorMargin(0, 0, 15, 15)
-            setPageMargin(40)
-            setIndicatorSliderRadius(10, 20)
-            setIndicatorHeight(6)
-            setIndicatorSliderColor(
-                ContextCompat.getColor(requireContext(), R.color.banner_indicator),
-                ContextCompat.getColor(requireContext(), R.color.white)
-            )
-            setOnPageClickListener {
-                LogUtils.info("current banner is ---> $it")
-            }.create()
-        }
+        mBannerViewPager =
+            requireView().findViewById<BannerViewPager<BannerBean, BannerViewHolder>>(R.id.mBannerViewPager)
+                .apply {
+                    adapter = BannerAdapter()
+                    setIndicatorSliderGap(resources.getDimensionPixelOffset(R.dimen.dp_4))
+                    setIndicatorMargin(0, 0, 15, 15)
+                    setPageMargin(40)
+                    setIndicatorSliderRadius(10, 20)
+                    setIndicatorHeight(6)
+                    setIndicatorSliderColor(
+                        ContextCompat.getColor(requireContext(), R.color.banner_indicator),
+                        ContextCompat.getColor(requireContext(), R.color.white)
+                    )
+                    setOnPageClickListener {
+                        LogUtils.info("current banner is ---> $it")
+                    }.create()
+                }
     }
 
     override fun initData() {
+        refreshHomeData()
+    }
+
+    private fun refreshHomeData() {
         mViewModel.getBanner()
         mViewModel.getCategory()
     }
@@ -86,9 +94,11 @@ class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
         super.observe()
         mViewModel.run {
             mBannerLiveData.observe(viewLifecycleOwner, Observer {
+                mSwipeRefreshLayout.finishRefresh()
                 mBannerViewPager.refreshData(it)
             })
             mCategoryLiveData.observe(viewLifecycleOwner, Observer {
+                mSwipeRefreshLayout.finishRefresh()
                 initTab(it)
                 getShareViewModel()?.isGetCategory?.postEvent(true)
                 LogUtils.info("get category ---> $it")

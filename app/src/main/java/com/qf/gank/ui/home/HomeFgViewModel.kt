@@ -1,6 +1,7 @@
 package com.qf.gank.ui.home
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.qf.gank.bean.article.ArticleBean
 import com.qf.gank.bean.banner.BannerBean
 import com.qf.gank.bean.category.CategoryBean
@@ -14,32 +15,16 @@ import com.qf.gank.ui.girl.GirlRepository
  */
 class HomeFgViewModel : BaseViewModel() {
 
-    private val homeRepository by lazy { HomeRepository() }
+    private val homeRepository by lazy { HomeRepository(viewModelScope, errorLiveData) }
 
     val mBannerLiveData: MutableLiveData<List<BannerBean>> = MutableLiveData()
     val mCategoryLiveData by lazy { MutableLiveData<List<CategoryBean>>() }
 
     fun getBanner() {
-        launch(
-            block = {
-                val bannerDeferred = async { homeRepository.getBanner() }
-                val bannerList = bannerDeferred.await()
-                mBannerLiveData.postValue(bannerList)
-            }
-        )
+        homeRepository.getBanner(mBannerLiveData)
     }
 
     fun getCategory() {
-        launch(
-            block = {
-                val girlCategory = async { homeRepository.getCategory("Girl") }.await()
-                val articleCategory = async { homeRepository.getCategory("Article") }.await()
-                val categories = ArrayList<CategoryBean>().apply {
-                    girlCategory?.let { addAll(it) }
-                    articleCategory?.let { addAll(it) }
-                }
-                mCategoryLiveData.postValue(categories)
-            }
-        )
+        homeRepository.getCategory(mCategoryLiveData)
     }
 }
