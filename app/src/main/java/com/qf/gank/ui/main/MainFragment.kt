@@ -15,7 +15,7 @@ class MainFragment : BaseVmFragment<MainFgViewModel>() {
 
     override fun initView() {
         mMenuIv.setOnClickListener {
-            getShareViewModel()?.openOrCloseDrawer?.postEvent(true)
+            getShareViewModel()?.openOrCloseDrawer?.postValue(true)
         }
 
     }

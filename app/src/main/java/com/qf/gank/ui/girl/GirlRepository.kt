@@ -10,5 +10,5 @@ import com.qf.gank.http.client.RetrofitClient
 class GirlRepository {
 
     suspend fun getGirls(category: String, type: String, page: Int, count: Int) =
-        RetrofitClient.getService.getGirls(category, type, page, count).getResult()
+        RetrofitClient.getService.getArticle(category, type, page, count).getResult()
 }

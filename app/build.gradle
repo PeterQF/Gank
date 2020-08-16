@@ -49,7 +49,7 @@ dependencies {
     implementation Deps.retrofit2Converter
     implementation Deps.brvah
     implementation Deps.qmui
-    implementation Deps.eventLiveData
+    implementation Deps.unPeekLiveData
     implementation Deps.immersionBar
     implementation Deps.bannerViewPager
     implementation Deps.glide

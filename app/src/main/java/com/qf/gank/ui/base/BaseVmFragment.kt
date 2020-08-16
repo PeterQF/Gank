@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.qf.gank.application.App
+import com.qf.gank.utils.LogUtils
 
 /**
  * 作者：PeterWu

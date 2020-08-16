@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/drawer_background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/drawer_background">
 
     <ImageView
         android:id="@+id/mHeaderIv"
@@ -20,8 +20,8 @@
         android:id="@+id/mCloseDrawerIv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:layout_marginTop="20dp"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_close_drawer" />
@@ -30,8 +30,8 @@
         android:id="@+id/mNightModeIv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:layout_marginTop="20dp"
+        android:padding="20dp"
         app:layout_constraintEnd_toStartOf="@+id/mCloseDrawerIv"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_day_mode" />
@@ -60,20 +60,20 @@
         android:id="@+id/mUserIconFl"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@+id/mHeaderUserFl"
         app:layout_constraintStart_toStartOf="@+id/mHeaderUserFl"
-        app:layout_constraintBottom_toBottomOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/guideline">
 
         <com.qmuiteam.qmui.widget.QMUIRadiusImageView
             android:id="@+id/mUserIconIv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/icon_user_default"
             android:scaleType="centerCrop"
-            app:qmui_is_circle="true"
+            android:src="@drawable/icon_user_default"
+            app:qmui_border_color="@color/white"
             app:qmui_border_width="3dp"
-            app:qmui_border_color="@color/white"/>
+            app:qmui_is_circle="true" />
 
     </FrameLayout>
 
@@ -90,7 +90,7 @@
         app:layout_constraintStart_toStartOf="@id/mHeaderUserFl"
         app:layout_constraintTop_toBottomOf="@+id/mUserIconFl" />
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
@@ -104,118 +104,67 @@
         app:layout_constraintTop_toBottomOf="@+id/mHeaderUserFl">
 
 
-        <ScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/mHomeTv"
+                style="@style/drawerTextViewStyle"
+                android:text="@string/drawer_home"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <TextView
+                android:id="@+id/mGirlTv"
+                style="@style/drawerTextViewStyle"
+                android:text="@string/drawer_girl"
+                app:layout_constraintTop_toBottomOf="@id/mHomeTv"
+                tools:ignore="MissingConstraints"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="@dimen/dp_10"
-                    android:text="@string/drawer_home"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp_14" />
+            <TextView
+                android:id="@+id/mGankTv"
+                style="@style/drawerTextViewStyle"
+                android:text="@string/drawer_gank"
+                app:layout_constraintTop_toBottomOf="@id/mGirlTv"
+                tools:ignore="MissingConstraints"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="@dimen/dp_10"
-                    android:text="@string/drawer_girl"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp_14" />
+            <TextView
+                android:id="@+id/mTopicTv"
+                style="@style/drawerTextViewStyle"
+                android:text="@string/drawer_topic"
+                app:layout_constraintTop_toBottomOf="@id/mGankTv"
+                tools:ignore="MissingConstraints"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="@dimen/dp_10"
-                    android:text="@string/drawer_gank"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp_14" />
+            <TextView
+                android:id="@+id/mFlutterTv"
+                style="@style/drawerTextViewStyle"
+                android:text="@string/drawer_flutter"
+                app:layout_constraintTop_toBottomOf="@id/mTopicTv"
+                tools:ignore="MissingConstraints"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="@dimen/dp_10"
-                    android:text="@string/drawer_topic"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp_14" />
+            <TextView
+                android:id="@+id/mApiTv"
+                style="@style/drawerTextViewStyle"
+                android:text="@string/drawer_api"
+                app:layout_constraintTop_toBottomOf="@id/mFlutterTv" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="@dimen/dp_10"
-                    android:text="@string/drawer_flutter"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp_14" />
+            <TextView
+                android:id="@+id/mSettingTv"
+                style="@style/drawerTextViewStyle"
+                android:text="@string/drawer_setting"
+                app:layout_constraintTop_toBottomOf="@id/mApiTv"
+                tools:ignore="MissingConstraints"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="@dimen/dp_10"
-                    android:text="@string/drawer_api"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp_14" />
+            <TextView
+                android:id="@+id/mAboutTv"
+                style="@style/drawerTextViewStyle"
+                android:text="@string/drawer_about_me"
+                app:layout_constraintTop_toBottomOf="@id/mSettingTv"
+                tools:ignore="MissingConstraints" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="@dimen/dp_10"
-                    android:text="@string/drawer_leave_message"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp_14" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="@dimen/dp_10"
-                    android:text="@string/drawer_new_version_progress"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp_14" />
-
-            </LinearLayout>
-
-        </ScrollView>
-
-    </FrameLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

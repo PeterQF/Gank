@@ -6,10 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.kunminx.event.EventObserver
 import com.qf.gank.R
-import com.qf.gank.bean.article.ArticleBean
 import com.qf.gank.bean.category.CategoryBean
 import com.qf.gank.ui.base.BaseVmFragment
 import com.qf.gank.utils.LogUtils
@@ -23,9 +20,8 @@ import kotlinx.android.synthetic.main.include_recyclerview_refresh.*
  */
 class HomePageFragment : BaseVmFragment<HomePageViewModel>() {
 
-    //    private val mItems by lazy { ArrayList<ArticleBean>() }
     private val mAdapter by lazy { HomePageListAdapter(mutableListOf()) }
-    private var mPage = 1
+    private var mIsCanRefresh = false
 
     companion object {
 
@@ -50,8 +46,7 @@ class HomePageFragment : BaseVmFragment<HomePageViewModel>() {
         initRefresh()
         mRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         val rvItemDecoration = RvItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-        ContextCompat.getDrawable(requireContext(), R.drawable.inset_rv_divider)
-            ?.let { rvItemDecoration.setDrawable(it) }
+        ContextCompat.getDrawable(requireContext(), R.drawable.inset_rv_divider)?.let { rvItemDecoration.setDrawable(it) }
         mRecyclerView.addItemDecoration(rvItemDecoration)
         mRecyclerView.adapter = mAdapter
 
@@ -66,14 +61,17 @@ class HomePageFragment : BaseVmFragment<HomePageViewModel>() {
         }
     }
 
-    override fun initData() {
+    override fun lazyLoadData() {
         requestArticle(true)
+        getShareViewModel()?.isRefreshArticle?.observe(viewLifecycleOwner, Observer {
+            if (it && mIsCanRefresh) {
+                LogUtils.info("home page fragment is refresh")
+                requestArticle(true)
+            }
+        })
     }
 
     private fun requestArticle(isRefresh: Boolean) {
-//        getShareViewModel()?.isGetCategory?.observe(viewLifecycleOwner, EventObserver {
-//            LogUtils.error("get category success")
-//        })
         mCategoryBean.type?.let { mViewModel.getArticle(isRefresh, it) }
     }
 
@@ -82,7 +80,7 @@ class HomePageFragment : BaseVmFragment<HomePageViewModel>() {
         mViewModel.run {
             mArticleLiveData.observe(viewLifecycleOwner, Observer {
                 LogUtils.error("get article ---> ${it.size}")
-
+                getShareViewModel()?.isRefreshArticle?.postValue(false)
                 if (it.count() == 0) {
                     mRefreshLayout.finishLoadMoreWithNoMoreData()
                     mNoMoreDataTv.visibility = View.VISIBLE
@@ -93,11 +91,24 @@ class HomePageFragment : BaseVmFragment<HomePageViewModel>() {
                     mLoadMoreFl.visibility = View.VISIBLE
                     mAdapter.replaceData(it)
                 }
-//                mAdapter.setNewData(it)
-                //                mItems.addAll(it)
-//                mAdapter.notifyDataSetChanged()
+            })
+            errorLiveData.observe(viewLifecycleOwner, Observer {
+                getShareViewModel()?.isRefreshArticle?.postValue(false)
+                mRefreshLayout.finishLoadMore()
             })
         }
+    }
+
+    override fun onResume() {
+        mIsCanRefresh = true
+        LogUtils.info("home page fragment is onResume ${mCategoryBean.title}")
+        super.onResume()
+    }
+
+    override fun onPause() {
+        mIsCanRefresh = false
+        LogUtils.info("home page fragment is onPause ${mCategoryBean.title}")
+        super.onPause()
     }
 
     override fun getLayoutId() = R.layout.include_recyclerview_refresh

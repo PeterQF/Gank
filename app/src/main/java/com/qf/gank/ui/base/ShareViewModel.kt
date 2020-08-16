@@ -1,6 +1,7 @@
 package com.qf.gank.ui.base
 
-import com.kunminx.event.EventLiveData
+import com.kunminx.architecture.ui.callback.UnPeekLiveData
+
 
 /**
  * 作者：PeterWu
@@ -9,7 +10,7 @@ import com.kunminx.event.EventLiveData
  */
 class ShareViewModel : BaseViewModel() {
 
-    val openOrCloseDrawer: EventLiveData<Boolean> = EventLiveData()
+    val openOrCloseDrawer: UnPeekLiveData<Boolean> = UnPeekLiveData()
 
-    val isGetCategory: EventLiveData<Boolean> = EventLiveData()
+    val isRefreshArticle by lazy { UnPeekLiveData<Boolean>() }
 }

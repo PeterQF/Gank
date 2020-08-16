@@ -1,14 +1,10 @@
 package com.qf.gank.ui.home
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.angcyo.tablayout.DslTabIndicator
-import com.google.android.material.tabs.TabLayoutMediator
 import com.qf.gank.R
 import com.qf.gank.bean.banner.BannerBean
 import com.qf.gank.bean.category.CategoryBean
@@ -18,8 +14,6 @@ import com.qf.gank.ui.home.banner.BannerViewHolder
 import com.qf.gank.utils.LogUtils
 import com.qf.gank.widget.ViewPager2Delegate
 import com.zhpan.bannerview.BannerViewPager
-import com.zhpan.indicator.enums.IndicatorSlideMode
-import com.zhpan.indicator.enums.IndicatorStyle
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -40,10 +34,11 @@ class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
     }
 
     private fun initRefresh() {
+        mRefreshHeader.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
         mSwipeRefreshLayout.apply {
             setEnableOverScrollBounce(false)
             setOnRefreshListener {
-                refreshHomeData()
+                getShareViewModel()?.isRefreshArticle?.postValue(true)
             }
         }
     }
@@ -58,6 +53,13 @@ class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
             mDslTabLayout.addView(view)
         }
         mViewPager.adapter = HomePageAdapter(requireActivity(), mFragmentList)
+        // 加了下面这句，会一次走完fragment的onViewCreated，而如果使用initData的话，就相当于没有了懒加载
+        // 会走完所有fragment的initData，所以加了下面这句就使用lazyLoadData来实现懒加载。
+        // 如果不加下面这句，默认就是懒加载，使用initData或者lazyLoadData都可以。
+        // 之所以我要加下面这句，是因为我要实现下拉刷新，当我从第一个fragment依次滑到最后一个fragment，再从最后一个依次滑到
+        // 第一个的时候开启刷新，此时mIsCanRefresh为false，但确实走了onResume方法，而加了下面这句就解决了， 暂不知为嘛。
+        // 有待考究！！！
+        mViewPager.offscreenPageLimit = mFragmentList.count()
         mDslTabLayout.setupViewPager(ViewPager2Delegate(mViewPager, mDslTabLayout))
     }
 
@@ -83,6 +85,9 @@ class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
 
     override fun initData() {
         refreshHomeData()
+        getShareViewModel()?.isRefreshArticle?.observe(viewLifecycleOwner, Observer {
+            if (it.not()) mSwipeRefreshLayout.finishRefresh()
+        })
     }
 
     private fun refreshHomeData() {
@@ -100,7 +105,6 @@ class HomeFragment : BaseVmFragment<HomeFgViewModel>() {
             mCategoryLiveData.observe(viewLifecycleOwner, Observer {
                 mSwipeRefreshLayout.finishRefresh()
                 initTab(it)
-                getShareViewModel()?.isGetCategory?.postEvent(true)
                 LogUtils.info("get category ---> $it")
             })
         }

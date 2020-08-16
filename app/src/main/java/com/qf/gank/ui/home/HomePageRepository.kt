@@ -25,22 +25,28 @@ class HomePageRepository(
      */
     private var pageNum = 1
 
+    /**
+     * 获取文章
+     */
     fun getArticle(isRefresh: Boolean, type: String, articleLiveData: MutableLiveData<MutableList<ArticleBean>>) {
         if (isRefresh) {
-            getArticleResult(true, type, 1, articleLiveData)
+            requestArticle(true, type, 1, articleLiveData)
         } else {
-            getArticleResult(false, type, ++pageNum, articleLiveData)
+            requestArticle(false, type, ++pageNum, articleLiveData)
         }
     }
 
-    fun getArticleResult(isRefresh: Boolean, type: String, page: Int, articleLiveData: MutableLiveData<MutableList<ArticleBean>>) {
+    /**
+     * 请求文章
+     */
+    private fun requestArticle(isRefresh: Boolean, type: String, page: Int, articleLiveData: MutableLiveData<MutableList<ArticleBean>>) {
         launch(
             block = {
                 var articleResult: ApiArticleResult<List<ArticleBean>>?= null
-                if (type == "Girl") {
-                    articleResult = RetrofitClient.getService.getGirls(type, type, page, 20).getResult()
+                articleResult = if (type == "Girl") {
+                    RetrofitClient.getService.getArticle(type, type, page, 20).getResult()
                 } else {
-                    articleResult = RetrofitClient.getService.getGirls("GanHuo", type, page, 20).getResult()
+                    RetrofitClient.getService.getArticle("GanHuo", type, page, 20).getResult()
                 }
                 val articles = articleResult.data
                 if (type == "Girl") {

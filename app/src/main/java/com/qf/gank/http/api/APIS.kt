@@ -28,10 +28,10 @@ interface APIS {
     suspend fun getCategory(@Path("category_type") type: String): ApiResult<List<CategoryBean>>
 
     /**
-     * 获取妹子图
+     * 获取文章、妹子图
      */
     @GET("data/category/{category}/type/{type}/page/{page}/count/{count}")
-    suspend fun getGirls(
+    suspend fun getArticle(
         @Path("category") category: String,
         @Path("type") type: String,
         @Path("page") page: Int,

@@ -13,4 +13,6 @@
     <string name="drawer_leave_message">留言</string>
     <string name="drawer_new_version_progress">新版进度</string>
     <string name="drawer_login_now">立即登录</string>
+    <string name="drawer_setting">设置</string>
+    <string name="drawer_about_me">关于我</string>
 </resources>
